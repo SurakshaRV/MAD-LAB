@@ -1,4 +1,4 @@
-Main_activity.java
+MainActivity.java
 
 
 package com.example.lab2;
@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        e1=(EditText)findViewById(R.id.editView);
-        e2=(EditText)findViewById(R.id.editView2);
+        e1=(EditText)findViewById(R.id.editText);
+        e2=(EditText)findViewById(R.id.editText2);
 
         bt=(Button)findViewById(R.id.button);
 
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 usn=e2.getText().toString();
                 dept=s.getSelectedItem().toString();
 
-                Intent i=new Intent(MainActivity.this,Main2Activity.class);
+                Intent i=new Intent(MainActivity.this,secondActivity.class);
 
                 i.putExtra("name_key",name);
                 i.putExtra("usn_key",usn);
@@ -58,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-second_activity.java
-
+secondActivity.java
 
 package com.example.lab2;
 
@@ -70,7 +70,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class Main2Activity extends AppCompatActivity {
+public class secondActivity extends AppCompatActivity {
 
     TextView t1,t2,t3;
     String name,usn,dept;
@@ -78,11 +78,11 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_second);
 
-        t1=(TextView)findViewById(R.id.textView11);
-        t2=(TextView)findViewById(R.id.textView12);
-        t3=(TextView)findViewById(R.id.textView13);
+        t1=(TextView)findViewById(R.id.textView);
+        t2=(TextView)findViewById(R.id.textView2);
+        t3=(TextView)findViewById(R.id.textView3);
 
         Intent i=getIntent();
 
