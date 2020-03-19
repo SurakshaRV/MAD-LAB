@@ -1,5 +1,5 @@
 MainActivity.java
-package com.example.myapplication;
+package com.example.lab5n6db;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     EditText name,marks;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 myDB.insert(name.getText().toString(),Integer.parseInt(marks.getText().toString()));
+                Toast.makeText(MainActivity.this,"Data inserted",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -36,16 +38,39 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 StringBuffer det= (StringBuffer) myDB.display();
-                //showMessage("Display status ", det.toString());
+                Toast.makeText(MainActivity.this,"Display status "+ det.toString(),Toast.LENGTH_LONG).show();
+                //ShowMessage("Display status ", det.toString());
+            }
+        });
+        upd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.button3) {
+                    myDB.update(name.getText().toString(),Integer.parseInt(marks.getText().toString()));
+                    Toast.makeText(MainActivity.this,"Data updated",Toast.LENGTH_LONG).show();
+
+                    // showMessage("Success","Record Updated");
+                }
+            }});
+        del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.button4) {
+                    myDB.delete(name.getText().toString());
+                    Toast.makeText(MainActivity.this,"Record deleted",Toast.LENGTH_LONG).show();
+
+                    // showMessage("Success","Record Deleted");
+                }
             }
         });
     }
 
 
 }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 DatabaseHelper.java
-package com.example.myapplication;
+package com.example.lab5n6db;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -65,7 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, db_name, null, 1);
-         db=this.getWritableDatabase();
+        db=this.getWritableDatabase();
     }
 
 
@@ -99,4 +124,12 @@ public class DatabaseHelper extends SQLiteOpenHelper
             buffer.append("Marks : "+ c.getString(2)+ "\n");
         }return(buffer);
     }
+    public void update(String name, int marks) {
+        String query = "UPDATE student_table SET Marks=" + marks +
+                " WHERE Name='" + name + "';";
+        db.execSQL(query);
+    }
+    public void delete(String name){
+        String query="DELETE FROM student_table WHERE Name='"+name+"';";
+        db.execSQL(query);}
 }
