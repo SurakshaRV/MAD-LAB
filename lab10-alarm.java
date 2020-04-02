@@ -129,7 +129,7 @@ AndroidManifest.xml
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".AlarnReceiver"></receiver>
+        <receiver android:name=".AlarmReceiver"></receiver>
     </application>
 
 </manifest>
