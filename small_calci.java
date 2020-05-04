@@ -44,7 +44,33 @@ public class MainActivity extends AppCompatActivity {
                 tv.setText(Integer.toString(res));
             }
         });
-
+minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int  num1=Integer.parseInt(et1.getText().toString());
+                int  num2=Integer.parseInt(et2.getText().toString());
+                int  res=num1-num2;
+                tv.setText(Integer.toString(res));
+            }
+        });
+        dot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int  num1=Integer.parseInt(et1.getText().toString());
+                int  num2=Integer.parseInt(et2.getText().toString());
+                int  res=num1*num2;
+                tv.setText(Integer.toString(res));
+            }
+        });
+        div.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int  num1=Integer.parseInt(et1.getText().toString());
+                int  num2=Integer.parseInt(et2.getText().toString());
+                float  res=(float)num1/num2;
+                tv.setText(Float.toString(res));
+            }
+        });
 
     }
 }
